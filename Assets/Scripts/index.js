@@ -84,7 +84,7 @@ const arrayReverser = (array) => {
 		let reversedStr = "";
 		let str = cleanedArray[i];
 		for (let j = str.length-1; j >= 0; j--){ //Cada string dentro del array es recorrido en el orden inverso
-			reversedStr += str[j]; //
+			reversedStr += str[j]; //Los string invertidos son incluidos en un nuevo array
 		}
 		reversedArray.push(reversedStr);
 	}
