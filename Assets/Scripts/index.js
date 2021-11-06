@@ -30,14 +30,20 @@ const cleanArray = (array) => {
 }
 
 /* EJERCÍCIO 1 */
-//La función excuseGenerator retorna una frase formada por tres strings aleatorias, una de cada array dado. Generamos los índices aleatorios ulizado las funciones Math.floor() y Math.random()
-const excuseGenerator = () => {
-    let personName = cleanArray(names)[Math.floor(Math.random()*cleanArray(names).length)];
-    let personSurname = cleanArray(surnames)[Math.floor(Math.random()*cleanArray(surnames).length)];
-    let excuse = cleanArray(excuses)[Math.floor(Math.random()*cleanArray(excuses).length)];
-    return `${excuse} ${personName} ${personSurname}`;
+//La función randomNumber retorna números aleatorios que representan los índices de los valores de un array dado
+function randomNumber(array) {
+    let cleanedArray = cleanArray(array);
+    return Math.floor(Math.random() * cleanedArray.length);
 }
-console.log(excuseGenerator()); //console.log() para testar la función
+
+//La función excuseGenerator llama a la funcion randomNumber para devolver valores aleatorios dentro de cada array y retorna un string aleario con esos valores
+const excuseGenerator = () => {
+    let randomSurname = surnames[randomNumber(surnames)];
+    let randomExcuse = excuses[randomNumber(excuses)];
+    let randomName = names[randomNumber(names)];
+    return `${randomExcuse} ${randomName} ${randomSurname}`;
+}
+console.log(excuseGenerator()); //console.log() para testar la función excuseGenerator
 
 /* EJERCÍCIO 2 */
 //La función countLetters retorna un objeto donde aparecen todos los caracteres presentes en los elementos de un array dado e indica cuantas veces esa letra aparece en el array
@@ -49,7 +55,7 @@ const countLetters = (array) => {
         for(let j in item){
             let letter = item[j].toLowerCase(); //Las letras son convertidas en minúsculas para que se cuenten el número de ocurrencias sin diferenciarse mayúsculas y minúsculas
             if (letter == " ") { //Los espacios son eliminados para que la función no los cuente
-                continue;
+                letter = "";
             }
             else if(counter[letter]){
                 counter[letter] = counter[letter]+1;
